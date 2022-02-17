@@ -1,0 +1,26 @@
+# VSCode
+.vscode/settings.json
+
+#Python
+__pycache__
+venv
+
+#Output
+output
+
+#Legacy
+Classnames
+old
+backup
+
+#Do not include classfiles
+classes.csv
+classes_work.csv
+export.csv
+
+#Do not include subprojects
+AdminToolKit
+Exile.Tembelan
+ExileServer
+configs
+exportThings.sqf

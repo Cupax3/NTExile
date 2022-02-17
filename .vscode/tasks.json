@@ -1,0 +1,172 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+		{
+			"label": "Parse new classnames",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"args": [
+				"parse-class-names.py",
+				"${file}",
+				"classes.csv"
+			]
+		},
+		{
+			"label": "Yeet output folder",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"args": [
+				"yeet-output-folder.py"
+			]
+		},
+		{
+			"label": "Generate trader prices",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+				"Yeet output folder",
+			],
+			"args": [
+				"generate-trader-prices.py",
+				"classes_work.csv"
+			]
+		},
+		{
+			"label": "Generate trader categories",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+				"Generate trader prices",
+			],
+			"args": [
+				"generate-trader-categories.py",
+				"classes_work.csv"
+			]
+		},
+		{
+			"label": "Generate trader includes",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+				"Generate trader categories",
+			],
+			"args": [
+				"generate-trader-includes.py",
+				"classes_work.csv"
+			]
+		},
+		{
+			"label": "Generate weapon loot",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+
+			],
+			"args": [
+				"generate-weapon-loot.py",
+				"classes_work.csv"
+			]
+		},
+		{
+			"label": "Full build",
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+				"Generate trader includes",
+				"Generate weapon loot",
+				"Generate zombie loot"
+			]
+		},
+		{
+			"label": "Generate zombie loot",
+			"group": "build",
+			"windows": {
+				"command": "python.exe"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOn": [
+
+			],
+			"args": [
+				"generate-zombie-loot.py",
+				"classes_work.csv"
+			]
+		}
+    ]
+}
